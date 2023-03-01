@@ -42,8 +42,6 @@ canvas {
   height:100%;
 }
 
-
-
   header {
     background: var(--dark-bg);
     grid-column: 2 / span 5;
@@ -59,6 +57,17 @@ canvas {
     font-size: 1.25rem;
     line-height: 1.5;
     margin-bottom: var(--spacing);
+  }
+  h6{
+    margin: 0;
+    padding: 0;
+    grid-column: 2 / span 9;
+    margin-bottom: var(--spacing);
+    color: white;
+    background: var(--dark-bg);
+    font-size: 2rem;
+    display: inline;
+   
   }
 
   blockquote {

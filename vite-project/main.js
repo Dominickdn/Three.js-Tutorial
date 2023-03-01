@@ -59,14 +59,15 @@ const dom =new THREE.Mesh(
   new THREE.MeshBasicMaterial( { map: domTexture})
 );
 scene.add(dom);
+
+
 const moonTexture= new THREE.TextureLoader().load('moon.jpg');
 const normalTexture= new THREE.TextureLoader().load('normal.jpg');
-
 const moon = new THREE.Mesh(
   new THREE.SphereGeometry(3,32,32),
   new THREE.MeshStandardMaterial({
     map: moonTexture,
-    normalMap: normalTexture                   //normal maps are used to create a sense of depth with very little effort
+    normalMap: normalTexture,                   //normal maps are used to create a sense of depth with very little effort
   })
 );
 moon.position.z =30;
@@ -90,10 +91,16 @@ function moveCamera(){
 
 
 }
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
 document.body.onscroll = moveCamera
 
  
-
 //renderer.render(scene,camera); replaced with animate function below
 function animate(){               //kind of like a game loop
   requestAnimationFrame(animate); //this is a mechanism that tells the browser you want to perform an animation
@@ -102,7 +109,8 @@ function animate(){               //kind of like a game loop
   torus.rotation.z +=0.01;
 
   controls.update();         //updates Orbit controls in the animate function
-
+  window.addEventListener("resize", onWindowResize);
   renderer.render(scene, camera );
+  
 }
 animate();
